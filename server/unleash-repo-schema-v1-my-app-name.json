@@ -1,1 +1,1 @@
-{"app.ToggleX":{"name":"app.ToggleX","description":"foo","enabled":true,"strategies":[{"name":"default"}],"variants":null,"createdAt":"2020-01-14T20:20:29.160Z"}}
+{"app.ToggleX":{"name":"app.ToggleX","description":"foo","enabled":true,"strategies":[{"name":"default"},{"name":"userWithId","parameters":{"userIds":"abc123"}}],"variants":null,"createdAt":"2020-01-14T20:20:29.160Z"}}
