@@ -8,12 +8,12 @@ This project is a POC around using unleash in a docker environment
 
 ## Spin it up locally
 
-1. run `dc up -d unleash-db` to build / spin up the unleash postgres database - wait a few seconds for it to spin up
-1. run `dc up unleash` to spin up the unleash service (migrations are auto-run)
+1. run `docker-compose up -d unleash-db` to build / spin up the unleash postgres database - wait a few seconds for it to spin up
+1. run `docker-compose up unleash` to spin up the unleash service (migrations are auto-run)
 
 Visit http://localhost:4242 to set up your flags
 
-1. run `dc up server` to spin up our express app at http://localhost:3000
+1. run `docker-compose up server` to spin up our express app at http://localhost:3000
 
 - http://localhost:3000 hits our 'Hello World' endpoint, which checks the `app.ToggleX` flag
 - http://localhost:3000?userid=abc123 checks `app.ToggleX` passing in a context where userId = `abc123`
