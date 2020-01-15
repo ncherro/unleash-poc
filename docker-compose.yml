@@ -21,6 +21,7 @@ services:
     build: ./server
     command: npm run start
     environment:
+      PORT: 3001
       UNLEASH_API_BASE: http://unleash:4242/api # unleash API address
       UNLEASH_REFRESH_INTERVAL: 5000 # poll every 5 seconds
       APP_NAME: foo # identify our app with unleash
@@ -29,5 +30,4 @@ services:
       - ./server:/usr/app/ # mount ./server at /usr/app in the container
       - /usr/app/node_modules # cache node_modules in a volume
     ports:
-      - "3000:3000" # expose on localhost:3000
-
+      - "3001:3001" # expose on localhost:3001
