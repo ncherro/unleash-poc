@@ -24,10 +24,10 @@ app.get('/api', function (req, res) {
   const context = fakeContext(req)
 
   const flagName = req.query.flagname || '[no flag passed]'
-  const flag = getAllFeatureToggles(context)[flagName]
+  const flag = isEnabled(flagName, context)
 
   const forUser = context ? ` for '${context.userId}'` : ''
-  const respText = flag && flag.isEnabled ? 'Yes' : 'No'
+  const respText = isEnabled ? 'Yes' : 'No'
 
   res.send(`'${flagName}' enabled${forUser}? ${respText}`)
 })
