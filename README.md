@@ -25,6 +25,12 @@ Read more about the node client here - https://github.com/Unleash/unleash-client
 
 Visit http://localhost:4242 to set up your flags
 
+\* Note - there will be a 5 second delay before changes to flags are reflected
+on the API. This is [by
+design](https://www.unleash-hosted.com/articles/our-unique-architecture). The
+polling interval can be configured with an ENV var (see `docker-compose.yml`
+and `server/flags.js` for more info).
+
 ### Spin up our Express server
 
 1. run `docker-compose up server`
@@ -40,9 +46,10 @@ Visit http://localhost:4242 to set up your flags
 ### Spin up our React client
 
 1. `cd client`
+1. `npm install`
 1. `npm start`
 
-Visit http://localhost:3000 to see enabled flags.
+Visit http://localhost:3000 to see enabled flags
 
 Enter a UserID into the input and click 'Reload' to check toggles for different
 users
