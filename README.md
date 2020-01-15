@@ -7,7 +7,7 @@ going through these steps, you will have:
 - an Express API running at http://localhost:3001
 - a React app running at http://localhost:3000 (proxying to the API)
 
-Read more about unleash here - https://unleash.github.io/
+Read more about unleash here - https://unleash.github.io/  
 Read more about the node client here - https://github.com/Unleash/unleash-client-node
 
 ## Prereqs
