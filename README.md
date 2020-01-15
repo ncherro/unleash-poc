@@ -8,6 +8,7 @@ going through these steps, you will have:
 - a React app running at http://localhost:3000 (proxying to the API)
 
 Read more about unleash here - https://unleash.github.io/
+Read more about the node client here - https://github.com/Unleash/unleash-client-node
 
 ## Prereqs
 
@@ -28,11 +29,11 @@ Visit http://localhost:4242 to set up your flags
 
 1. run `docker-compose up server`
 
-- Visit http://localhost:3001?userid=abc123&flagname=app.ToggleX to check
+- Visit http://localhost:3001/api?userid=abc123&flagname=app.ToggleX to check
   whether `app.ToggleX` is enabled for User `abc123`
-- Visit http://localhost:3001/toggles?userid=abc123 displays a list of toggles
-  User `abc123` - our mobile / web clients could hit an endpoint like this to
-  pull a full list of toggles for 'current user' at some interval
+- Visit http://localhost:3001/api/toggles?userid=abc123 displays a list of
+  toggles User `abc123` - our mobile / web clients could hit an endpoint like
+  this to pull a full list of toggles for 'current user' at some interval
 
 \* Note - any code updates require a server restart
 
