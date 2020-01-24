@@ -1,5 +1,5 @@
 const express = require('express')
-const { isEnabled, getAllFeatureToggles } = require('./flags.js')
+const { isEnabled, getAllFeatureToggles, getFeatureToggleDefinitions } = require('./flags.js')
 
 const app = express()
 
@@ -36,6 +36,11 @@ app.get('/api', function (req, res) {
 app.get('/api/toggles', function (req, res) {
   const context = fakeContext(req)
   res.send(getAllFeatureToggles(context))
+})
+
+// returns all toggle definitions (demo purposes only - not useful IRL)
+app.get('/api/toggle-definitions', function (req, res) {
+  res.send(getFeatureToggleDefinitions())
 })
 
 // start it up!

@@ -50,4 +50,5 @@ const getAllFeatureToggles = (context) => {
 module.exports = {
   isEnabled,
   getAllFeatureToggles,
+  getFeatureToggleDefinitions,
 }
