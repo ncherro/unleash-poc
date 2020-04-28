@@ -1,13 +1,13 @@
 'use strict';
 
 const unleash = require('unleash-server');
-const customAdminAuth = require('./google-auth-hook');
+const authHook = require('./custom-auth-hook');
 
 unleash
   .start({
     databaseUrl: process.env.DATABASE_URL,
     adminAuthentication: 'custom',
-    preRouterHook: customAdminAuth,
+    preRouterHook: authHook,
   })
   .then(unleash => {
     console.log(

@@ -10,6 +10,9 @@ const unleashClient = initialize({
   appName: process.env.APP_NAME, // required
   instanceId: process.env.INSTANCE_ID,
   refreshInterval: process.env.UNLEASH_REFRESH_INTERVAL,
+  customHeaders: {
+    authorization: process.env.UNLEASH_SHARED_SECRET, // required
+  },
 })
 
 // optional events

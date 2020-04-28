@@ -1,5 +1,5 @@
 const express = require('express')
-const { isEnabled, getAllFeatureToggles, getFeatureToggleDefinitions } = require('./flags.js')
+const { isEnabled, getAllFeatureToggles, getFeatureToggleDefinitions } = require('./toggles.js')
 
 const app = express()
 

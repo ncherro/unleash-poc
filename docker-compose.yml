@@ -14,6 +14,7 @@ services:
     build: ./unleash
     environment:
       DATABASE_URL: postgres://unleash:passw0rd@unleash-db:5432/unleash
+      SHARED_SECRET: abc123
       GOOGLE_CLIENT_ID: ${UNLEASH_GOOGLE_CLIENT_ID}
       GOOGLE_CLIENT_SECRET: ${UNLEASH_GOOGLE_CLIENT_SECRET}
       GOOGLE_CALLBACK_URL: http://lvh.me:4242/api/auth/callback
@@ -27,6 +28,7 @@ services:
       PORT: 3001
       UNLEASH_API_BASE: http://unleash:4242/api # unleash API address
       UNLEASH_REFRESH_INTERVAL: 5000 # poll every 5 seconds
+      UNLEASH_SHARED_SECRET: abc123
       APP_NAME: foo # identify our app with unleash
       INSTANCE_ID: bar # identify this instance with unleash
     volumes:
