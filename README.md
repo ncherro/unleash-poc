@@ -3,7 +3,7 @@
 This project is a POC around using unleash in a local docker environment. After
 going through these steps, you will have:
 
-- Unleash (including its postgres database), running at http://localhost:4242
+- Unleash (including its postgres database), [authenticated via Google](https://unleash.github.io/docs/securing_unleash), running at http://localhost:4242
 - an Express API running at http://localhost:3001
 - a React app running at http://localhost:3000 (proxying to the API)
 
@@ -13,8 +13,30 @@ Read more about the node client here - https://github.com/Unleash/unleash-client
 ## Prereqs
 
 1. https://docs.docker.com/docker-for-mac/install/
+1. a Client ID and Secret for a [Google OAuth 2 client](https://developers.google.com/identity/protocols/oauth2) with a redirect callback at http://localhost:4242/api/auth/callback
+
+Our Anchor Web Client (Development) application is set up for this. See
+[here](https://console.developers.google.com/apis/credentials/oauthclient/91530627822-kem74edgdlnum63reof7pp0f742p3rl3.apps.googleusercontent.com?authuser=0&project=anchor-f74b9&supportedpurview=project)
 
 ## Running locally
+
+### Set ENV vars
+
+First, export env vars for the Google OAuth 2 client you created. These will be
+passed into the `unleash` server - see
+[docker-compose.yml](/docker-compose.yml) for details
+
+```bash
+export UNLEASH_GOOGLE_CLIENT_ID=<your client id>
+export UNLEASH_GOOGLE_CLIENT_SECRET=<your client secret>
+```
+
+If you'd like to whitelist a set of email domains, set a comma-separated list
+of domain names like this
+
+```bash
+export UNLEASH_WHITELISTED_EMAIL_DOMAINS=foo.com,bar.com
+```
 
 ### Spin up Unleash
 
@@ -23,7 +45,8 @@ Read more about the node client here - https://github.com/Unleash/unleash-client
 1. run `docker-compose up unleash` to spin up the unleash service (migrations
    are auto-run)
 
-Visit http://localhost:4242 to set up your flags
+Visit http://localhost:4242 to authenticate via Google using an email address
+from your whitelisted domain, if set, and set up your flags
 
 \* Note - there will be a 5 second delay before changes to flags are reflected
 on the API. This is [by

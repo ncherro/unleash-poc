@@ -11,9 +11,14 @@ services:
       POSTGRES_PASSWORD: passw0rd
 
   unleash:
-    image: unleashorg/unleash-server
+    build: ./unleash
     environment:
       DATABASE_URL: postgres://unleash:passw0rd@unleash-db:5432/unleash
+      SHARED_SECRET: abc123
+      GOOGLE_CALLBACK_URL: http://localhost:4242/api/auth/callback
+      GOOGLE_CLIENT_ID: ${UNLEASH_GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${UNLEASH_GOOGLE_CLIENT_SECRET}
+      WHITELISTED_EMAIL_DOMAINS: ${UNLEASH_WHITELISTED_EMAIL_DOMAINS}
     ports:
       - "4242:4242" # expose on localhost:4242
 
@@ -24,6 +29,7 @@ services:
       PORT: 3001
       UNLEASH_API_BASE: http://unleash:4242/api # unleash API address
       UNLEASH_REFRESH_INTERVAL: 5000 # poll every 5 seconds
+      UNLEASH_SHARED_SECRET: abc123
       APP_NAME: foo # identify our app with unleash
       INSTANCE_ID: bar # identify this instance with unleash
     volumes:
