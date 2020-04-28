@@ -11,11 +11,14 @@ services:
       POSTGRES_PASSWORD: passw0rd
 
   unleash:
-    image: unleashorg/unleash-server
+    build: ./unleash
     environment:
       DATABASE_URL: postgres://unleash:passw0rd@unleash-db:5432/unleash
+      GOOGLE_CLIENT_ID: ${UNLEASH_GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${UNLEASH_GOOGLE_CLIENT_SECRET}
+      GOOGLE_CALLBACK_URL: http://lvh.me:4242/api/auth/callback
     ports:
-      - "4242:4242" # expose on localhost:4242
+      - "4242:4242" # expose on lvh.me:4242
 
   server:
     build: ./server
@@ -30,4 +33,4 @@ services:
       - ./server:/usr/app/ # mount ./server at /usr/app in the container
       - /usr/app/node_modules # cache node_modules in a volume
     ports:
-      - "3001:3001" # expose on localhost:3001
+      - "3001:3001" # expose on lvh.me:3001
