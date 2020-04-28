@@ -32,6 +32,11 @@ const  { User, AuthenticationRequired } = require('unleash-server');
 
 const sharedSecret = process.env.SHARED_SECRET;
 
+const whitelistedEmailDomains = null;
+if (process.env.WHITELISTED_EMAIL_DOMAINS) {
+  whitelistedEmailDomains = process.env.WHITELISTED_EMAIL_DOMAINS.split(',')
+}
+
 passport.use(
   new GoogleOAuth2Strategy(
     {
@@ -41,13 +46,18 @@ passport.use(
     },
 
     (accessToken, refreshToken, profile, done) => {
-      done(
-        null,
-        new User({
-          name: profile.displayName,
-          email: profile.emails[0].value,
-        }),
-      );
+      // email address is a whitelisted domain
+      if (whitelistedEmailDomains === null || whitelistedEmailDomains.includes(profile._json.hd)) {
+        done(
+          null,
+          new User({
+            name: profile.displayName,
+            email: profile.emails[0].value,
+          }),
+        );
+      } else {
+        done(new Error("Invalid email domain"));
+      }
     },
   ),
 );
